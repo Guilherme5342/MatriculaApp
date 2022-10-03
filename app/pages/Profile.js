@@ -9,8 +9,7 @@ export default Profile = () => {
 	const { user } = useContext(AuthContext);
 
 	return (
-		<SafeAreaView>
-			<ScreenHeader title="Perfil" />
+		<SafeAreaView style={styles.container}>
 			<Image
 				style={styles.profilePicture}
 				// source={{ uri: user.profilePic }}

@@ -42,8 +42,7 @@ export default Search = () => {
 	}, []);
 
 	return (
-		<SafeAreaView>
-			<ScreenHeader title="Pesquisar" />
+		<SafeAreaView style={styles.container}>
 			<View>
 				<TextInput
 					onChangeText={search}
@@ -76,9 +75,6 @@ const styles = StyleSheet.create({
 	container: {
 		flex: 1,
 		backgroundColor: COLORS.white,
-		display: "flex",
-		justifyContent: "center",
-		alignItems: "center",
 	},
 	input: {
 		marginTop: 20,

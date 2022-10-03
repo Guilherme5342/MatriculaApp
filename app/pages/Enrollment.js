@@ -25,7 +25,7 @@ export default Enrollment = () => {
 
 	const setPeriodOpen = (clickedIndex) => {
 		let tempPeriods = periods.map((p, index) => {
-			if (index === clickedIndex) p.active = true;
+			if (index === clickedIndex) p.active = !p.active;
 			else if (p.active === true) p.active = false;
 			return p;
 		});
@@ -34,7 +34,6 @@ export default Enrollment = () => {
 
 	return (
 		<SafeAreaView style={styles.container}>
-			<ScreenHeader title="Matrícula" style={{ marginBottom: 30 }} />
 			{periods.map((period, index) => (
 				<>
 					<Pressable
@@ -72,6 +71,7 @@ const styles = StyleSheet.create({
 	container: {
 		flex: 1,
 		alignItems: "center",
+		backgroundColor: COLORS.white,
 	},
 	alert: {
 		marginTop: 40,

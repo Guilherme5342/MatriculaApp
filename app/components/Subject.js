@@ -16,7 +16,7 @@ export default Subject = ({ subject }) => {
 				<Text style={styles.text}>
 					Departamento: {subject?.unidadeAcademica}
 				</Text>
-				<Text style={styles.text}>{subject?.creditos} Créditos</Text>
+				<Text style={styles.text}>{subject?.creditos * 15} Horas</Text>
 			</View>
 		</View>
 	);

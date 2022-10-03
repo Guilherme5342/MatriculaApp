@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
 		flexDirection: "row",
 		justifyContent: "center",
 		alignItems: "center",
-		top: 0,
+		backgroundColor: COLORS.white,
 		width: "100%",
 	},
 	iconView: {

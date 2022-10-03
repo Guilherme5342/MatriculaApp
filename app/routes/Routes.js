@@ -6,6 +6,7 @@ import {
 } from "@react-navigation/stack";
 import React from "react";
 import BottomBar from "../components/BottomBar";
+import ScreenHeader from "../components/ScreenHeader";
 import SideBar from "../components/SideBar";
 import Enrollment from "../pages/Enrollment";
 import Home from "../pages/Home";
@@ -34,7 +35,6 @@ export const BottomNavigator = ({ navigation }) => {
 		<BottomTabs.Navigator
 			initialRouteName="home"
 			screenOptions={{
-				headerShown: false,
 				gestureDirection: "horizontal",
 			}}
 			tabBar={(props) => <BottomBar {...props} />}
@@ -44,6 +44,7 @@ export const BottomNavigator = ({ navigation }) => {
 				options={{
 					title: "Disciplinas",
 					icon: "book-open",
+					header: () => <ScreenHeader title="Disciplinas" />,
 				}}
 				component={Home}
 			/>
@@ -52,6 +53,7 @@ export const BottomNavigator = ({ navigation }) => {
 				options={{
 					title: "Pesquisar",
 					icon: "search",
+					header: () => <ScreenHeader title="Pesquisar" />,
 				}}
 				component={Search}
 			/>
@@ -60,6 +62,7 @@ export const BottomNavigator = ({ navigation }) => {
 				options={{
 					title: "Matricula",
 					icon: "search-plus",
+					header: () => <ScreenHeader title="Matricula" />,
 				}}
 				component={Enrollment}
 			/>
@@ -68,6 +71,7 @@ export const BottomNavigator = ({ navigation }) => {
 				options={{
 					title: "Perfil",
 					icon: "address-card",
+					header: () => <ScreenHeader title="Perfil" />,
 				}}
 				component={Profile}
 			/>

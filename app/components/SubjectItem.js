@@ -26,8 +26,9 @@ export default SubjectItem = ({ subject }) => {
 						temp[index] = !active[index];
 						setActive(temp);
 					}}
+					key={index}
 				>
-					<View key={index} style={styles.turmaView}>
+					<View style={styles.turmaView}>
 						<Text style={styles.turmaCodigo}>{turma.codigo}</Text>
 						<Text style={styles.turmaProf}>{turma.professor}</Text>
 						<Text style={styles.turmaNVagas}>

@@ -26,7 +26,6 @@ export default Home = () => {
 
 	return (
 		<SafeAreaView style={styles.container}>
-			<ScreenHeader title={"Disciplinas"} />
 			<FlatList
 				style={styles.flatlist}
 				data={subjects}
@@ -59,7 +58,6 @@ const styles = StyleSheet.create({
 		alignItems: "center",
 	},
 	flatlist: {
-		marginTop: 50,
 		alignSelf: "center",
 		width: "100%",
 	},

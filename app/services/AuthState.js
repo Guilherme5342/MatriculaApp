@@ -25,7 +25,7 @@ export default AuthState = ({ children }) => {
 				codigo: 2,
 				nome: "ENGENHARIA DE REDES DE COMUNICACAO",
 			},
-			profilePic: "assets/img/speakers/bear.jpg",
+			profilePic: "../../assets/profile_picture.jpg",
 		});
 	};
 

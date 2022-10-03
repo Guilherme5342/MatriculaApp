@@ -56,7 +56,7 @@ export default Search = () => {
 						size={25}
 						style={styles.searchIcon}
 						color={COLORS.green}
-						onPress={() => setSearchText("")}
+						onPress={() => search("")}
 					/>
 				)}
 			</View>

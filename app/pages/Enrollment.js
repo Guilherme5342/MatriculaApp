@@ -1,9 +1,1061 @@
-import React from "react";
-import { View } from "react-native";
+import React, { useContext, useState } from "react";
+import { Pressable, StyleSheet, Text, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import Icon from "react-native-vector-icons/FontAwesome5";
+import ScreenHeader from "../components/ScreenHeader";
+import SubjectItem from "../components/SubjectItem";
+import { COLORS } from "../services/Constants";
+import { EnrollmentContext } from "../services/EnrollmentState";
 
 export default Enrollment = () => {
-	return <View />;
+	const { enrollmentActive } = useContext(EnrollmentContext);
+
+	if (!enrollmentActive)
+		return (
+			<SafeAreaView style={styles.container}>
+				<ScreenHeader title="Matrícula" />
+				<View style={styles.alert}>
+					<Text style={styles.alertText}>
+						Não estamos no período de matricula!
+					</Text>
+				</View>
+			</SafeAreaView>
+		);
+	const [periods, setPeriods] = useState(tempPeriods);
+
+	const setPeriodOpen = (clickedIndex) => {
+		let tempPeriods = periods.map((p, index) => {
+			if (index === clickedIndex) p.active = true;
+			else if (p.active === true) p.active = false;
+			return p;
+		});
+		setPeriods(tempPeriods);
+	};
+
+	return (
+		<SafeAreaView style={styles.container}>
+			<ScreenHeader title="Matrícula" style={{ marginBottom: 30 }} />
+			{periods.map((period, index) => (
+				<>
+					<Pressable
+						key={index}
+						onPress={() => setPeriodOpen(index)}
+						style={styles.periodToggle}
+					>
+						<Icon
+							name={period.active ? "chevron-up" : "chevron-down"}
+							style={styles.periodIcon}
+							color={COLORS.white}
+							size={20}
+						/>
+						<Text style={styles.periodTitle}>
+							{index + 1}º Período
+						</Text>
+					</Pressable>
+					{period.active && (
+						<View style={{ width: "100%" }}>
+							{period.subjects.map((item) => (
+								<SubjectItem
+									subject={item}
+									key={Math.random() * 10000}
+								/>
+							))}
+						</View>
+					)}
+				</>
+			))}
+		</SafeAreaView>
+	);
 };
+
+const styles = StyleSheet.create({
+	container: {
+		flex: 1,
+		alignItems: "center",
+	},
+	alert: {
+		marginTop: 40,
+		backgroundColor: COLORS.green,
+		width: "85%",
+		justifyContent: "center",
+		alignItems: "center",
+		padding: 10,
+		borderRadius: 15,
+	},
+	alertText: {
+		fontSize: 22,
+		fontWeight: "bold",
+		color: COLORS.white,
+	},
+	periodToggle: {
+		width: "100%",
+		display: "flex",
+		flexDirection: "row",
+		height: 30,
+		backgroundColor: COLORS.lightGrey,
+		alignItems: "center",
+	},
+	periodIcon: {
+		marginLeft: 10,
+		marginRight: 10,
+	},
+	periodTitle: {
+		color: COLORS.white,
+		fontSize: 18,
+		fontWeight: "bold",
+	},
+});
+
+const tempPeriods = [
+	{
+		active: false,
+		subjects: [
+			{
+				name: "Introdução a engenharia de redes",
+				creditos: 4,
+				codigo: 123412,
+				turmas: [
+					{
+						codigo: "F",
+						listaHorarioAula: [
+							{
+								dia: "SEG",
+								hora: "14:00-15:50",
+							},
+							{ dia: "QUA", hora: "14:00-15:50" },
+						],
+						professor: "AAAAAAAAAA",
+						numeroVagas: 10,
+						numeroMatriculas: 0,
+						periodoLetivo: {
+							ano: 2017,
+							numero: 1,
+						},
+					},
+					{
+						codigo: "F",
+						listaHorarioAula: [
+							{
+								dia: "SEG",
+								hora: "14:00-15:50",
+							},
+							{ dia: "QUA", hora: "14:00-15:50" },
+						],
+						professor: "AAAAAAAAAA",
+						numeroVagas: 10,
+						numeroMatriculas: 0,
+						periodoLetivo: {
+							ano: 2017,
+							numero: 1,
+						},
+					},
+					{
+						codigo: "F",
+						listaHorarioAula: [
+							{
+								dia: "SEG",
+								hora: "14:00-15:50",
+							},
+							{ dia: "QUA", hora: "14:00-15:50" },
+						],
+						professor: "AAAAAAAAAA",
+						numeroVagas: 10,
+						numeroMatriculas: 0,
+						periodoLetivo: {
+							ano: 2017,
+							numero: 1,
+						},
+					},
+				],
+			},
+			{
+				name: "",
+				creditos: 4,
+				codigo: 123412,
+				turmas: [
+					{
+						codigo: "F",
+						listaHorarioAula: [
+							{
+								dia: "SEG",
+								hora: "14:00-15:50",
+							},
+							{ dia: "QUA", hora: "14:00-15:50" },
+						],
+						professor: "AAAAAAAAAA",
+						numeroVagas: 10,
+						numeroMatriculas: 0,
+						periodoLetivo: {
+							ano: 2017,
+							numero: 1,
+						},
+					},
+					{
+						codigo: "F",
+						listaHorarioAula: [
+							{
+								dia: "SEG",
+								hora: "14:00-15:50",
+							},
+							{ dia: "QUA", hora: "14:00-15:50" },
+						],
+						professor: "AAAAAAAAAA",
+						numeroVagas: 10,
+						numeroMatriculas: 0,
+						periodoLetivo: {
+							ano: 2017,
+							numero: 1,
+						},
+					},
+					{
+						codigo: "F",
+						listaHorarioAula: [
+							{
+								dia: "SEG",
+								hora: "14:00-15:50",
+							},
+							{ dia: "QUA", hora: "14:00-15:50" },
+						],
+						professor: "AAAAAAAAAA",
+						numeroVagas: 10,
+						numeroMatriculas: 0,
+						periodoLetivo: {
+							ano: 2017,
+							numero: 1,
+						},
+					},
+				],
+			},
+			{
+				name: "",
+				creditos: 4,
+				codigo: 123412,
+				turmas: [
+					{
+						codigo: "F",
+						listaHorarioAula: [
+							{
+								dia: "SEG",
+								hora: "14:00-15:50",
+							},
+							{ dia: "QUA", hora: "14:00-15:50" },
+						],
+						professor: "AAAAAAAAAA",
+						numeroVagas: 10,
+						numeroMatriculas: 0,
+						periodoLetivo: {
+							ano: 2017,
+							numero: 1,
+						},
+					},
+					{
+						codigo: "F",
+						listaHorarioAula: [
+							{
+								dia: "SEG",
+								hora: "14:00-15:50",
+							},
+							{ dia: "QUA", hora: "14:00-15:50" },
+						],
+						professor: "AAAAAAAAAA",
+						numeroVagas: 10,
+						numeroMatriculas: 0,
+						periodoLetivo: {
+							ano: 2017,
+							numero: 1,
+						},
+					},
+					{
+						codigo: "F",
+						listaHorarioAula: [
+							{
+								dia: "SEG",
+								hora: "14:00-15:50",
+							},
+							{ dia: "QUA", hora: "14:00-15:50" },
+						],
+						professor: "AAAAAAAAAA",
+						numeroVagas: 10,
+						numeroMatriculas: 0,
+						periodoLetivo: {
+							ano: 2017,
+							numero: 1,
+						},
+					},
+				],
+			},
+			{
+				name: "",
+				creditos: 4,
+				codigo: 123412,
+				turmas: [
+					{
+						codigo: "F",
+						listaHorarioAula: [
+							{
+								dia: "SEG",
+								hora: "14:00-15:50",
+							},
+							{ dia: "QUA", hora: "14:00-15:50" },
+						],
+						professor: "AAAAAAAAAA",
+						numeroVagas: 10,
+						numeroMatriculas: 0,
+						periodoLetivo: {
+							ano: 2017,
+							numero: 1,
+						},
+					},
+					{
+						codigo: "F",
+						listaHorarioAula: [
+							{
+								dia: "SEG",
+								hora: "14:00-15:50",
+							},
+							{ dia: "QUA", hora: "14:00-15:50" },
+						],
+						professor: "AAAAAAAAAA",
+						numeroVagas: 10,
+						numeroMatriculas: 0,
+						periodoLetivo: {
+							ano: 2017,
+							numero: 1,
+						},
+					},
+					{
+						codigo: "F",
+						listaHorarioAula: [
+							{
+								dia: "SEG",
+								hora: "14:00-15:50",
+							},
+							{ dia: "QUA", hora: "14:00-15:50" },
+						],
+						professor: "AAAAAAAAAA",
+						numeroVagas: 10,
+						numeroMatriculas: 0,
+						periodoLetivo: {
+							ano: 2017,
+							numero: 1,
+						},
+					},
+				],
+			},
+		],
+	},
+	{
+		active: false,
+		subjects: [
+			{
+				name: "",
+				creditos: 4,
+				codigo: 123412,
+				turmas: [
+					{
+						codigo: "F",
+						listaHorarioAula: [
+							{
+								dia: "SEG",
+								hora: "14:00-15:50",
+							},
+							{ dia: "QUA", hora: "14:00-15:50" },
+						],
+						professor: "AAAAAAAAAA",
+						numeroVagas: 10,
+						numeroMatriculas: 0,
+						periodoLetivo: {
+							ano: 2017,
+							numero: 1,
+						},
+					},
+					{
+						codigo: "F",
+						listaHorarioAula: [
+							{
+								dia: "SEG",
+								hora: "14:00-15:50",
+							},
+							{ dia: "QUA", hora: "14:00-15:50" },
+						],
+						professor: "AAAAAAAAAA",
+						numeroVagas: 10,
+						numeroMatriculas: 0,
+						periodoLetivo: {
+							ano: 2017,
+							numero: 1,
+						},
+					},
+					{
+						codigo: "F",
+						listaHorarioAula: [
+							{
+								dia: "SEG",
+								hora: "14:00-15:50",
+							},
+							{ dia: "QUA", hora: "14:00-15:50" },
+						],
+						professor: "AAAAAAAAAA",
+						numeroVagas: 10,
+						numeroMatriculas: 0,
+						periodoLetivo: {
+							ano: 2017,
+							numero: 1,
+						},
+					},
+				],
+			},
+			{
+				name: "",
+				creditos: 4,
+				codigo: 123412,
+				turmas: [
+					{
+						codigo: "F",
+						listaHorarioAula: [
+							{
+								dia: "SEG",
+								hora: "14:00-15:50",
+							},
+							{ dia: "QUA", hora: "14:00-15:50" },
+						],
+						professor: "AAAAAAAAAA",
+						numeroVagas: 10,
+						numeroMatriculas: 0,
+						periodoLetivo: {
+							ano: 2017,
+							numero: 1,
+						},
+					},
+					{
+						codigo: "F",
+						listaHorarioAula: [
+							{
+								dia: "SEG",
+								hora: "14:00-15:50",
+							},
+							{ dia: "QUA", hora: "14:00-15:50" },
+						],
+						professor: "AAAAAAAAAA",
+						numeroVagas: 10,
+						numeroMatriculas: 0,
+						periodoLetivo: {
+							ano: 2017,
+							numero: 1,
+						},
+					},
+					{
+						codigo: "F",
+						listaHorarioAula: [
+							{
+								dia: "SEG",
+								hora: "14:00-15:50",
+							},
+							{ dia: "QUA", hora: "14:00-15:50" },
+						],
+						professor: "AAAAAAAAAA",
+						numeroVagas: 10,
+						numeroMatriculas: 0,
+						periodoLetivo: {
+							ano: 2017,
+							numero: 1,
+						},
+					},
+				],
+			},
+			{
+				name: "",
+				creditos: 4,
+				codigo: 123412,
+				turmas: [
+					{
+						codigo: "F",
+						listaHorarioAula: [
+							{
+								dia: "SEG",
+								hora: "14:00-15:50",
+							},
+							{ dia: "QUA", hora: "14:00-15:50" },
+						],
+						professor: "AAAAAAAAAA",
+						numeroVagas: 10,
+						numeroMatriculas: 0,
+						periodoLetivo: {
+							ano: 2017,
+							numero: 1,
+						},
+					},
+					{
+						codigo: "F",
+						listaHorarioAula: [
+							{
+								dia: "SEG",
+								hora: "14:00-15:50",
+							},
+							{ dia: "QUA", hora: "14:00-15:50" },
+						],
+						professor: "AAAAAAAAAA",
+						numeroVagas: 10,
+						numeroMatriculas: 0,
+						periodoLetivo: {
+							ano: 2017,
+							numero: 1,
+						},
+					},
+					{
+						codigo: "F",
+						listaHorarioAula: [
+							{
+								dia: "SEG",
+								hora: "14:00-15:50",
+							},
+							{ dia: "QUA", hora: "14:00-15:50" },
+						],
+						professor: "AAAAAAAAAA",
+						numeroVagas: 10,
+						numeroMatriculas: 0,
+						periodoLetivo: {
+							ano: 2017,
+							numero: 1,
+						},
+					},
+				],
+			},
+			{
+				name: "",
+				creditos: 4,
+				codigo: 123412,
+				turmas: [
+					{
+						codigo: "F",
+						listaHorarioAula: [
+							{
+								dia: "SEG",
+								hora: "14:00-15:50",
+							},
+							{ dia: "QUA", hora: "14:00-15:50" },
+						],
+						professor: "AAAAAAAAAA",
+						numeroVagas: 10,
+						numeroMatriculas: 0,
+						periodoLetivo: {
+							ano: 2017,
+							numero: 1,
+						},
+					},
+					{
+						codigo: "F",
+						listaHorarioAula: [
+							{
+								dia: "SEG",
+								hora: "14:00-15:50",
+							},
+							{ dia: "QUA", hora: "14:00-15:50" },
+						],
+						professor: "AAAAAAAAAA",
+						numeroVagas: 10,
+						numeroMatriculas: 0,
+						periodoLetivo: {
+							ano: 2017,
+							numero: 1,
+						},
+					},
+					{
+						codigo: "F",
+						listaHorarioAula: [
+							{
+								dia: "SEG",
+								hora: "14:00-15:50",
+							},
+							{ dia: "QUA", hora: "14:00-15:50" },
+						],
+						professor: "AAAAAAAAAA",
+						numeroVagas: 10,
+						numeroMatriculas: 0,
+						periodoLetivo: {
+							ano: 2017,
+							numero: 1,
+						},
+					},
+				],
+			},
+		],
+	},
+	{
+		active: false,
+		subjects: [
+			{
+				name: "",
+				creditos: 4,
+				codigo: 123412,
+				turmas: [
+					{
+						codigo: "F",
+						listaHorarioAula: [
+							{
+								dia: "SEG",
+								hora: "14:00-15:50",
+							},
+							{ dia: "QUA", hora: "14:00-15:50" },
+						],
+						professor: "AAAAAAAAAA",
+						numeroVagas: 10,
+						numeroMatriculas: 0,
+						periodoLetivo: {
+							ano: 2017,
+							numero: 1,
+						},
+					},
+					{
+						codigo: "F",
+						listaHorarioAula: [
+							{
+								dia: "SEG",
+								hora: "14:00-15:50",
+							},
+							{ dia: "QUA", hora: "14:00-15:50" },
+						],
+						professor: "AAAAAAAAAA",
+						numeroVagas: 10,
+						numeroMatriculas: 0,
+						periodoLetivo: {
+							ano: 2017,
+							numero: 1,
+						},
+					},
+					{
+						codigo: "F",
+						listaHorarioAula: [
+							{
+								dia: "SEG",
+								hora: "14:00-15:50",
+							},
+							{ dia: "QUA", hora: "14:00-15:50" },
+						],
+						professor: "AAAAAAAAAA",
+						numeroVagas: 10,
+						numeroMatriculas: 0,
+						periodoLetivo: {
+							ano: 2017,
+							numero: 1,
+						},
+					},
+				],
+			},
+			{
+				name: "",
+				creditos: 4,
+				codigo: 123412,
+				turmas: [
+					{
+						codigo: "F",
+						listaHorarioAula: [
+							{
+								dia: "SEG",
+								hora: "14:00-15:50",
+							},
+							{ dia: "QUA", hora: "14:00-15:50" },
+						],
+						professor: "AAAAAAAAAA",
+						numeroVagas: 10,
+						numeroMatriculas: 0,
+						periodoLetivo: {
+							ano: 2017,
+							numero: 1,
+						},
+					},
+					{
+						codigo: "F",
+						listaHorarioAula: [
+							{
+								dia: "SEG",
+								hora: "14:00-15:50",
+							},
+							{ dia: "QUA", hora: "14:00-15:50" },
+						],
+						professor: "AAAAAAAAAA",
+						numeroVagas: 10,
+						numeroMatriculas: 0,
+						periodoLetivo: {
+							ano: 2017,
+							numero: 1,
+						},
+					},
+					{
+						codigo: "F",
+						listaHorarioAula: [
+							{
+								dia: "SEG",
+								hora: "14:00-15:50",
+							},
+							{ dia: "QUA", hora: "14:00-15:50" },
+						],
+						professor: "AAAAAAAAAA",
+						numeroVagas: 10,
+						numeroMatriculas: 0,
+						periodoLetivo: {
+							ano: 2017,
+							numero: 1,
+						},
+					},
+				],
+			},
+			{
+				name: "",
+				creditos: 4,
+				codigo: 123412,
+				turmas: [
+					{
+						codigo: "F",
+						listaHorarioAula: [
+							{
+								dia: "SEG",
+								hora: "14:00-15:50",
+							},
+							{ dia: "QUA", hora: "14:00-15:50" },
+						],
+						professor: "AAAAAAAAAA",
+						numeroVagas: 10,
+						numeroMatriculas: 0,
+						periodoLetivo: {
+							ano: 2017,
+							numero: 1,
+						},
+					},
+					{
+						codigo: "F",
+						listaHorarioAula: [
+							{
+								dia: "SEG",
+								hora: "14:00-15:50",
+							},
+							{ dia: "QUA", hora: "14:00-15:50" },
+						],
+						professor: "AAAAAAAAAA",
+						numeroVagas: 10,
+						numeroMatriculas: 0,
+						periodoLetivo: {
+							ano: 2017,
+							numero: 1,
+						},
+					},
+					{
+						codigo: "F",
+						listaHorarioAula: [
+							{
+								dia: "SEG",
+								hora: "14:00-15:50",
+							},
+							{ dia: "QUA", hora: "14:00-15:50" },
+						],
+						professor: "AAAAAAAAAA",
+						numeroVagas: 10,
+						numeroMatriculas: 0,
+						periodoLetivo: {
+							ano: 2017,
+							numero: 1,
+						},
+					},
+				],
+			},
+			{
+				name: "",
+				creditos: 4,
+				codigo: 123412,
+				turmas: [
+					{
+						codigo: "F",
+						listaHorarioAula: [
+							{
+								dia: "SEG",
+								hora: "14:00-15:50",
+							},
+							{ dia: "QUA", hora: "14:00-15:50" },
+						],
+						professor: "AAAAAAAAAA",
+						numeroVagas: 10,
+						numeroMatriculas: 0,
+						periodoLetivo: {
+							ano: 2017,
+							numero: 1,
+						},
+					},
+					{
+						codigo: "F",
+						listaHorarioAula: [
+							{
+								dia: "SEG",
+								hora: "14:00-15:50",
+							},
+							{ dia: "QUA", hora: "14:00-15:50" },
+						],
+						professor: "AAAAAAAAAA",
+						numeroVagas: 10,
+						numeroMatriculas: 0,
+						periodoLetivo: {
+							ano: 2017,
+							numero: 1,
+						},
+					},
+					{
+						codigo: "F",
+						listaHorarioAula: [
+							{
+								dia: "SEG",
+								hora: "14:00-15:50",
+							},
+							{ dia: "QUA", hora: "14:00-15:50" },
+						],
+						professor: "AAAAAAAAAA",
+						numeroVagas: 10,
+						numeroMatriculas: 0,
+						periodoLetivo: {
+							ano: 2017,
+							numero: 1,
+						},
+					},
+				],
+			},
+		],
+	},
+	{
+		active: false,
+		subjects: [
+			{
+				name: "",
+				creditos: 4,
+				codigo: 123412,
+				turmas: [
+					{
+						codigo: "F",
+						listaHorarioAula: [
+							{
+								dia: "SEG",
+								hora: "14:00-15:50",
+							},
+							{ dia: "QUA", hora: "14:00-15:50" },
+						],
+						professor: "AAAAAAAAAA",
+						numeroVagas: 10,
+						numeroMatriculas: 0,
+						periodoLetivo: {
+							ano: 2017,
+							numero: 1,
+						},
+					},
+					{
+						codigo: "F",
+						listaHorarioAula: [
+							{
+								dia: "SEG",
+								hora: "14:00-15:50",
+							},
+							{ dia: "QUA", hora: "14:00-15:50" },
+						],
+						professor: "AAAAAAAAAA",
+						numeroVagas: 10,
+						numeroMatriculas: 0,
+						periodoLetivo: {
+							ano: 2017,
+							numero: 1,
+						},
+					},
+					{
+						codigo: "F",
+						listaHorarioAula: [
+							{
+								dia: "SEG",
+								hora: "14:00-15:50",
+							},
+							{ dia: "QUA", hora: "14:00-15:50" },
+						],
+						professor: "AAAAAAAAAA",
+						numeroVagas: 10,
+						numeroMatriculas: 0,
+						periodoLetivo: {
+							ano: 2017,
+							numero: 1,
+						},
+					},
+				],
+			},
+			{
+				name: "",
+				creditos: 4,
+				codigo: 123412,
+				turmas: [
+					{
+						codigo: "F",
+						listaHorarioAula: [
+							{
+								dia: "SEG",
+								hora: "14:00-15:50",
+							},
+							{ dia: "QUA", hora: "14:00-15:50" },
+						],
+						professor: "AAAAAAAAAA",
+						numeroVagas: 10,
+						numeroMatriculas: 0,
+						periodoLetivo: {
+							ano: 2017,
+							numero: 1,
+						},
+					},
+					{
+						codigo: "F",
+						listaHorarioAula: [
+							{
+								dia: "SEG",
+								hora: "14:00-15:50",
+							},
+							{ dia: "QUA", hora: "14:00-15:50" },
+						],
+						professor: "AAAAAAAAAA",
+						numeroVagas: 10,
+						numeroMatriculas: 0,
+						periodoLetivo: {
+							ano: 2017,
+							numero: 1,
+						},
+					},
+					{
+						codigo: "F",
+						listaHorarioAula: [
+							{
+								dia: "SEG",
+								hora: "14:00-15:50",
+							},
+							{ dia: "QUA", hora: "14:00-15:50" },
+						],
+						professor: "AAAAAAAAAA",
+						numeroVagas: 10,
+						numeroMatriculas: 0,
+						periodoLetivo: {
+							ano: 2017,
+							numero: 1,
+						},
+					},
+				],
+			},
+			{
+				name: "",
+				creditos: 4,
+				codigo: 123412,
+				turmas: [
+					{
+						codigo: "F",
+						listaHorarioAula: [
+							{
+								dia: "SEG",
+								hora: "14:00-15:50",
+							},
+							{ dia: "QUA", hora: "14:00-15:50" },
+						],
+						professor: "AAAAAAAAAA",
+						numeroVagas: 10,
+						numeroMatriculas: 0,
+						periodoLetivo: {
+							ano: 2017,
+							numero: 1,
+						},
+					},
+					{
+						codigo: "F",
+						listaHorarioAula: [
+							{
+								dia: "SEG",
+								hora: "14:00-15:50",
+							},
+							{ dia: "QUA", hora: "14:00-15:50" },
+						],
+						professor: "AAAAAAAAAA",
+						numeroVagas: 10,
+						numeroMatriculas: 0,
+						periodoLetivo: {
+							ano: 2017,
+							numero: 1,
+						},
+					},
+					{
+						codigo: "F",
+						listaHorarioAula: [
+							{
+								dia: "SEG",
+								hora: "14:00-15:50",
+							},
+							{ dia: "QUA", hora: "14:00-15:50" },
+						],
+						professor: "AAAAAAAAAA",
+						numeroVagas: 10,
+						numeroMatriculas: 0,
+						periodoLetivo: {
+							ano: 2017,
+							numero: 1,
+						},
+					},
+				],
+			},
+			{
+				name: "",
+				creditos: 4,
+				codigo: 123412,
+				turmas: [
+					{
+						codigo: "F",
+						listaHorarioAula: [
+							{
+								dia: "SEG",
+								hora: "14:00-15:50",
+							},
+							{ dia: "QUA", hora: "14:00-15:50" },
+						],
+						professor: "AAAAAAAAAA",
+						numeroVagas: 10,
+						numeroMatriculas: 0,
+						periodoLetivo: {
+							ano: 2017,
+							numero: 1,
+						},
+					},
+					{
+						codigo: "F",
+						listaHorarioAula: [
+							{
+								dia: "SEG",
+								hora: "14:00-15:50",
+							},
+							{ dia: "QUA", hora: "14:00-15:50" },
+						],
+						professor: "AAAAAAAAAA",
+						numeroVagas: 10,
+						numeroMatriculas: 0,
+						periodoLetivo: {
+							ano: 2017,
+							numero: 1,
+						},
+					},
+					{
+						codigo: "F",
+						listaHorarioAula: [
+							{
+								dia: "SEG",
+								hora: "14:00-15:50",
+							},
+							{ dia: "QUA", hora: "14:00-15:50" },
+						],
+						professor: "AAAAAAAAAA",
+						numeroVagas: 10,
+						numeroMatriculas: 0,
+						periodoLetivo: {
+							ano: 2017,
+							numero: 1,
+						},
+					},
+				],
+			},
+		],
+	},
+];
 
 const Turmas = [
 	{

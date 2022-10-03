@@ -14,6 +14,12 @@ export default Home = () => {
 		setSubjects(tempSubjects);
 		setRefreshing(false);
 	};
+
+	const remover = (subject) => {
+		let newArray = subjects.filter((sub) => sub !== subject);
+		setSubjects(newArray);
+	};
+
 	useEffect(() => {
 		setSubjects(tempSubjects);
 	}, []);
@@ -26,9 +32,11 @@ export default Home = () => {
 				data={subjects}
 				refreshing={refreshing}
 				onRefresh={getSubjects}
-				renderItem={({ item }) => <EnrolledSubject subject={item} />}
+				renderItem={({ item }) => (
+					<EnrolledSubject subject={item} remover={remover} />
+				)}
 				keyExtractor={(item) =>
-					item.status + item.turma.disciplina.codigo
+					item.status + item.turma.disciplina.codigo + item.status
 				}
 				ItemSeparatorComponent={() => (
 					<View

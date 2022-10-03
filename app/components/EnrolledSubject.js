@@ -1,8 +1,9 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
+import Icon from "react-native-vector-icons/FontAwesome5";
 import { COLORS, FONTS } from "../services/Constants";
 
-export default EnrolledSubject = ({ subject }) => {
+export default EnrolledSubject = ({ subject, remover }) => {
 	return (
 		<View style={styles.cardContainer}>
 			<Text
@@ -15,8 +16,8 @@ export default EnrolledSubject = ({ subject }) => {
 			</Text>
 			<View style={styles.line}>
 				<View>
-					{subject.turma.listaHorarioAula.map((horario) => (
-						<Text style={styles.text}>
+					{subject.turma.listaHorarioAula.map((horario, index) => (
+						<Text style={styles.text} key={index}>
 							{horario.dia} - {horario.hora}
 						</Text>
 					))}
@@ -28,6 +29,13 @@ export default EnrolledSubject = ({ subject }) => {
 					<Text style={styles.text}>Status: {subject.status}</Text>
 				</View>
 			</View>
+			<Icon
+				name="times"
+				size={22}
+				style={styles.icon}
+				color={COLORS.white}
+				onPress={() => remover(subject)}
+			/>
 		</View>
 	);
 };
@@ -45,6 +53,7 @@ const styles = StyleSheet.create({
 		color: COLORS.white,
 		fontSize: 18,
 		fontWeight: "bold",
+		marginRight: 20,
 	},
 	text: {
 		color: COLORS.white,
@@ -55,5 +64,11 @@ const styles = StyleSheet.create({
 		flexDirection: "row",
 		justifyContent: "space-between",
 		paddingRight: 20,
+	},
+	icon: {
+		position: "absolute",
+		right: 12,
+		top: 10,
+		zIndex: 4,
 	},
 });

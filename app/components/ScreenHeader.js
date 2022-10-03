@@ -5,11 +5,11 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import Icon from "react-native-vector-icons/FontAwesome5";
 import { COLORS, FONTS } from "../services/Constants";
 
-export default ScreenHeader = ({ title }) => {
+export default ScreenHeader = ({ title, style }) => {
 	const navigation = useNavigation();
 
 	return (
-		<SafeAreaView style={styles.screenHeader}>
+		<SafeAreaView style={{ ...styles.screenHeader, ...style }}>
 			{/* <View style={styles.iconView}>
 				<Pressable
 					style={styles.iconPressable}

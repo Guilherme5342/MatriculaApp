@@ -1,15 +1,13 @@
 import React, { useContext, useState } from "react";
-import { Image, StyleSheet, Text } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
-import ScreenHeader from "../components/ScreenHeader";
+import { Image, StyleSheet, Text, View } from "react-native";
 import { AuthContext } from "../services/AuthState";
-import { COLORS, FONTS } from "../services/Constants";
+import { COLORS } from "../services/Constants";
 
 export default Profile = () => {
 	const { user } = useContext(AuthContext);
 
 	return (
-		<SafeAreaView style={styles.container}>
+		<View style={styles.container}>
 			<Image
 				style={styles.profilePicture}
 				// source={{ uri: user.profilePic }}
@@ -31,7 +29,7 @@ export default Profile = () => {
 				Período de Ingresso: {user.periodoIngresso.numero}/
 				{user.periodoIngresso.ano}
 			</Text>
-		</SafeAreaView>
+		</View>
 	);
 };
 

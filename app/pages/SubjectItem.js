@@ -9,6 +9,7 @@ export default SubjectItem = ({ subject }) => {
 		let states = subject.turmas.map(() => false);
 		return states;
 	});
+
 	return (
 		<>
 			<Pressable

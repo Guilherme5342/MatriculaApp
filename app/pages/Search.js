@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { FlatList, StyleSheet, TextInput, View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
 import Icon from "react-native-vector-icons/FontAwesome5";
-import ScreenHeader from "../components/ScreenHeader";
-import Subject from "../components/Subject";
+import Subject from "../components/SubjectCard";
 import { COLORS } from "../services/Constants";
 
 export default Search = () => {
@@ -42,7 +40,7 @@ export default Search = () => {
 	}, []);
 
 	return (
-		<SafeAreaView style={styles.container}>
+		<View style={styles.container}>
 			<View style={styles.filterView}>
 				<TextInput
 					onChangeText={search}
@@ -67,7 +65,7 @@ export default Search = () => {
 				renderItem={({ item }) => <Subject subject={item} />}
 				ItemSeparatorComponent={() => <View style={{ height: 10 }} />}
 			/>
-		</SafeAreaView>
+		</View>
 	);
 };
 
@@ -75,6 +73,7 @@ const styles = StyleSheet.create({
 	container: {
 		flex: 1,
 		backgroundColor: COLORS.white,
+		marginTop: 10,
 	},
 	filterView: {
 		height: 50,

@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { FlatList, StyleSheet, View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
-import Subject from "../components/EnrolledSubject";
-import ScreenHeader from "../components/ScreenHeader";
-import { COLORS, FONTS } from "../services/Constants";
+import SubjectCard from "../components/SubjectCard";
+import { COLORS } from "../services/Constants";
 
 export default Home = () => {
 	const [refreshing, setRefreshing] = useState(false);
@@ -25,14 +23,14 @@ export default Home = () => {
 	}, []);
 
 	return (
-		<SafeAreaView style={styles.container}>
+		<View style={styles.container}>
 			<FlatList
 				style={styles.flatlist}
 				data={subjects}
 				refreshing={refreshing}
 				onRefresh={getSubjects}
 				renderItem={({ item }) => (
-					<EnrolledSubject subject={item} remover={remover} />
+					<SubjectCard subject={item} remover={remover} />
 				)}
 				keyExtractor={(item) =>
 					item.status + item.turma.disciplina.codigo + item.status
@@ -45,21 +43,15 @@ export default Home = () => {
 					/>
 				)}
 			/>
-		</SafeAreaView>
+		</View>
 	);
 };
 
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
+		marginTop: 10,
 		backgroundColor: COLORS.white,
-		display: "flex",
-		justifyContent: "center",
-		alignItems: "center",
-	},
-	flatlist: {
-		alignSelf: "center",
-		width: "100%",
 	},
 });
 

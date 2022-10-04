@@ -1,5 +1,6 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createDrawerNavigator } from "@react-navigation/drawer";
+import { NavigationContainer } from "@react-navigation/native";
 import {
 	CardStyleInterpolators,
 	createStackNavigator,
@@ -8,6 +9,7 @@ import React from "react";
 import BottomBar from "../components/BottomBar";
 import ScreenHeader from "../components/ScreenHeader";
 import SideBar from "../components/SideBar";
+import Subject from "../components/Subject";
 import Enrollment from "../pages/Enrollment";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
@@ -58,13 +60,13 @@ export const BottomNavigator = ({ navigation }) => {
 				component={Search}
 			/>
 			<BottomTabs.Screen
-				name="enrrollment"
+				name="enrollmentStack"
 				options={{
 					title: "Matricula",
 					icon: "search-plus",
 					header: () => <ScreenHeader title="Matricula" />,
 				}}
-				component={Enrollment}
+				component={EnrrollmentStack}
 			/>
 			<BottomTabs.Screen
 				name="profile"
@@ -76,5 +78,33 @@ export const BottomNavigator = ({ navigation }) => {
 				component={Profile}
 			/>
 		</BottomTabs.Navigator>
+	);
+};
+
+const EnrrollmentStackNavigator = createStackNavigator();
+
+const EnrrollmentStack = () => {
+	return (
+		<EnrrollmentStackNavigator.Navigator>
+			<EnrrollmentStackNavigator.Group>
+				<EnrrollmentStackNavigator.Screen
+					name="enrrollment"
+					options={{
+						title: "Matricula",
+						icon: "search-plus",
+						header: () => {},
+					}}
+					component={Enrollment}
+				/>
+				<EnrrollmentStackNavigator.Screen
+					name="subject"
+					options={{
+						title: "Matéria",
+						header: () => <ScreenHeader title="Matéria" />,
+					}}
+					component={Subject}
+				/>
+			</EnrrollmentStackNavigator.Group>
+		</EnrrollmentStackNavigator.Navigator>
 	);
 };

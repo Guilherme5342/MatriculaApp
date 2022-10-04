@@ -43,7 +43,7 @@ export default Search = () => {
 
 	return (
 		<SafeAreaView style={styles.container}>
-			<View>
+			<View style={styles.filterView}>
 				<TextInput
 					onChangeText={search}
 					style={styles.input}
@@ -76,24 +76,27 @@ const styles = StyleSheet.create({
 		flex: 1,
 		backgroundColor: COLORS.white,
 	},
+	filterView: {
+		height: 50,
+		width: "85%",
+		alignSelf: "center",
+	},
 	input: {
-		marginTop: 20,
 		borderColor: COLORS.green,
 		borderWidth: 3,
 		borderRadius: 10,
-		height: 50,
-		width: "85%",
+		height: "100%",
+		width: "100%",
 		paddingLeft: 15,
-		alignSelf: "center",
 	},
 	searchIcon: {
 		position: "absolute",
-		right: 50,
-		top: 32,
+		right: 15,
+		top: 12,
 		zIndex: 2,
 	},
 	flatList: {
-		marginTop: 20,
+		marginTop: 5,
 	},
 });
 

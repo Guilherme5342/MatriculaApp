@@ -3,9 +3,9 @@ import { Pressable, StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Icon from "react-native-vector-icons/FontAwesome5";
 import ScreenHeader from "../components/ScreenHeader";
-import SubjectItem from "../components/SubjectItem";
 import { COLORS } from "../services/Constants";
 import { EnrollmentContext } from "../services/EnrollmentState";
+import SubjectItem from "./SubjectItem";
 
 export default Enrollment = () => {
 	const { enrollmentActive } = useContext(EnrollmentContext);

@@ -6,6 +6,7 @@ import Home from "../pages/Home";
 import Profile from "../pages/Profile";
 import Search from "../pages/Search";
 import EnrollmentStack from "./EnrollmentStack";
+import SubjectsTabs from "./SubjectsTabs";
 
 const BottomTabs = createBottomTabNavigator();
 
@@ -25,7 +26,7 @@ export default BottomNavigator = ({ navigation }) => {
 					icon: "book-open",
 					header: () => <ScreenHeader title="Disciplinas" />,
 				}}
-				component={Home}
+				component={SubjectsTabs}
 			/>
 			<BottomTabs.Screen
 				name="search"

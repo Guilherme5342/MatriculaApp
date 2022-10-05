@@ -1,46 +1,5 @@
-/**
- * Learn more about using TypeScript with React Navigation:
- * https://reactnavigation.org/docs/typescript/
- */
 
-import { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
-import {
-    CompositeScreenProps,
-    NavigatorScreenParams,
-} from "@react-navigation/native";
-import { NativeStackScreenProps } from "@react-navigation/native-stack";
-
-declare global {
-    namespace ReactNavigation {
-        interface RootParamList extends RootStackParamList {}
-    }
-}
-
-export type RootStackParamList = {
-    Root: NavigatorScreenParams<RootTabParamList> | undefined;
-    Modal: undefined;
-    NotFound: undefined;
-};
-
-export type RootStackScreenProps<Screen extends keyof RootStackParamList> =
-    NativeStackScreenProps<RootStackParamList, Screen>;
-
-export type RootTabParamList = {
-    TabMatriculas: undefined;
-    TabOferta: undefined;
-    TabHistorico: undefined;
-    TabPerfil: undefined;
-};
-
-export type RootTabScreenProps<Screen extends keyof RootTabParamList> =
-    CompositeScreenProps<
-        BottomTabScreenProps<RootTabParamList, Screen>,
-        NativeStackScreenProps<RootStackParamList>
-    >;
-
-//Tipos específicos do MW2
-
-export type CargaHorariaCurso = {
+type CargaHorariaCurso = {
     totalMinima: Number;
     totalObrigatoria: Number;
     optativaMinima: Number;
@@ -48,50 +7,50 @@ export type CargaHorariaCurso = {
     maximaPorPeriodo: Number;
 };
 
-export type Unidade = {
+type Unidade = {
     codigo: String;
     nome: String;
 };
 
-export type Localidade = {
+type Localidade = {
     endereco: String;
 };
 
-export type HorarioSemanal = {
+type HorarioSemanal = {
     dia: String;
     horaInicio: String;
     horaFim: String;
     local: Localidade;
 };
 
-export type Professor = {
+type Professor = {
     nome: String;
 };
 
-export type CargaHorariaDisciplina = {
+type CargaHorariaDisciplina = {
     total: Number;
     teorica: Number;
     pratica: Number;
 };
 
-export type PrazoConclusao = {
+type PrazoConclusao = {
     minimo: Number;
     medio: Number;
     maximo: Number;
 };
 
-export type PeriodoLetivo = {
+type PeriodoLetivo = {
     ano: Number;
     numero: Number;
 };
 
-export type Coordenador = {
+type Coordenador = {
     matricula: String;
     nome: String;
     email: String;
 };
 
-export type Turma = {
+type Turma = {
     codigo: String;
     vagasOfertadas: Number;
     vagasOcupadas: Number;
@@ -102,7 +61,7 @@ export type Turma = {
     disciplina: Disciplina;
 };
 
-export type Curso = {
+type Curso = {
     codigo: String;
     nome: String;
     grau: String;
@@ -113,7 +72,7 @@ export type Curso = {
     curriculos: EstruturaCurricular[];
 };
 
-export type Aluno = {
+type Aluno = {
     matricula: String;
     nome: String;
     email: String;
@@ -124,7 +83,7 @@ export type Aluno = {
     curso: Curso;
 };
 
-export type Matricula = {
+type Matricula = {
     status: String;
     prioridade: Number;
     motivoIndeferimento: String;
@@ -132,12 +91,12 @@ export type Matricula = {
     turma: Turma;
 };
 
-export type HistoricoAcademico = {
+type HistoricoAcademico = {
     aluno: Aluno;
     disciplinas: Disciplina[];
 };
 
-export type Disciplina = {
+type Disciplina = {
     codigo: String;
     nome: String;
     modalidade: String;
@@ -146,20 +105,20 @@ export type Disciplina = {
     preRequisitos: Disciplina[];
 };
 
-export type DisciplinaHistoricoAcademico = {
+type DisciplinaHistoricoAcademico = {
     status: String;
     mencao: String;
     periodo: PeriodoLetivo;
     disciplina: Disciplina;
 };
 
-export type DisciplinaEstruturaCurricular = {
+type DisciplinaEstruturaCurricular = {
     tipo: String;
     nivel: Number;
     disciplina: Disciplina;
 };
 
-export type EstruturaCurricular = {
+type EstruturaCurricular = {
     codigo: String;
     status: String;
     periodoLetivoEntradaVigor: PeriodoLetivo;
@@ -168,7 +127,7 @@ export type EstruturaCurricular = {
     cargaHoraria: CargaHorariaCurso;
 };
 
-export enum TipoUsuario{
+enum TipoUsuario {
     ALUNO,
     COORDENADOR
 }

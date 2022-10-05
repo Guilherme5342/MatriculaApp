@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome5";
 import { COLORS, FONTS } from "../services/Constants";
 
-export default SubjectCard = ({ subject }) => {
+export default SubjectCard = ({ subject, remover, showStatus }) => {
 	return (
 		<View style={styles.cardContainer}>
 			<Text
@@ -28,6 +28,11 @@ export default SubjectCard = ({ subject }) => {
 					<Text style={styles.text}>
 						Código: {subject.turma.disciplina.codigo}
 					</Text>
+					{showStatus && (
+						<Text style={styles.text}>
+							Status: {subject.status}
+						</Text>
+					)}
 				</View>
 			</View>
 			<Icon

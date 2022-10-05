@@ -3,14 +3,14 @@ import { FlatList, StyleSheet, View } from "react-native";
 import SubjectCard from "../components/SubjectCard";
 import { COLORS } from "../services/Constants";
 
-export default Home = () => {
+export default Processing = () => {
 	const [refreshing, setRefreshing] = useState(false);
 	const [subjects, setSubjects] = useState([]);
 
 	const getSubjects = () => {
 		setRefreshing(true);
 		let filteredArr = tempSubjects.filter(
-			({ status }) => status !== "PreMatricula",
+			({ status }) => status === "PreMatricula",
 		);
 		setSubjects(filteredArr);
 		setRefreshing(false);
@@ -23,7 +23,7 @@ export default Home = () => {
 
 	useEffect(() => {
 		let filteredArr = tempSubjects.filter(
-			({ status }) => status !== "PreMatricula",
+			({ status }) => status === "PreMatricula",
 		);
 		setSubjects(filteredArr);
 	}, []);
@@ -36,7 +36,7 @@ export default Home = () => {
 				refreshing={refreshing}
 				onRefresh={getSubjects}
 				renderItem={({ item }) => (
-					<SubjectCard subject={item} remover={remover} />
+					<SubjectCard subject={item} remover={remover} showStatus />
 				)}
 				keyExtractor={(item) =>
 					item.status + item.turma.disciplina.codigo + item.status

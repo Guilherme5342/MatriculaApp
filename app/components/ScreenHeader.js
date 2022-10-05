@@ -35,6 +35,7 @@ const styles = StyleSheet.create({
 		alignItems: "center",
 		backgroundColor: COLORS.white,
 		width: "100%",
+		paddingBottom: 5,
 	},
 	iconView: {
 		position: "absolute",

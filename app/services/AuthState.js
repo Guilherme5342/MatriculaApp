@@ -17,13 +17,32 @@ export default AuthState = ({ children }) => {
 			matricula: "180123456",
 			nome: "PETRONIO HENRIQUE MOREIRA CRUZ",
 			email: email,
+			ira: 3.6,
+			curriculo: "2020.1",
+			status: true,
 			periodoIngresso: {
 				ano: "2018",
 				numero: "1",
 			},
 			curso: {
-				codigo: 2,
+				codigo: "2",
 				nome: "ENGENHARIA DE REDES DE COMUNICACAO",
+				grau: "Graduação",
+				modalidade: "presencial",
+				turno: "integral",
+				coordenador: {
+					matricula: "1242343",
+					nome: "Paulo Gondim",
+					email: "paulog@gmail.com",
+				},
+				unidades: [
+					{
+						codigo: "2",
+						nome: "String",
+					},
+				],
+				curriculos: [],
+				codigo: 2,
 			},
 			profilePic: "../../assets/profile_picture.jpg",
 		});

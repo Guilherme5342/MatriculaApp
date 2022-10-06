@@ -1,6 +1,6 @@
 import React from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
-import { COLORS } from "../services/Constants";
+import { COLORS } from "../../services/Constants";
 
 export default SubjectsBar = ({ state, descriptors, navigation, position }) => {
 	return (
@@ -26,6 +26,7 @@ export default SubjectsBar = ({ state, descriptors, navigation, position }) => {
 
 				return (
 					<Pressable
+						key={index}
 						style={[
 							styles.tabPressable,
 							{

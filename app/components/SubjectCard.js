@@ -11,37 +11,36 @@ export default SubjectCard = ({ subject, remover, showStatus }) => {
 				ellipsizeMode={"tail"}
 				style={styles.cardTitle}
 			>
-				{subject.turma.disciplina.nome}
+				{subject.disciplina.nome}
 			</Text>
 			<View style={styles.line}>
 				<View>
-					{subject.turma.listaHorarioAula.map((horario, index) => (
+					{subject.horarios.map((horario, index) => (
 						<Text style={styles.text} key={index}>
-							{horario.dia} - {horario.hora}
+							{horario.dia} - {horario.horaInicio} a
+							{horario.horaFim}
 						</Text>
 					))}
 				</View>
 				<View>
+					<Text style={styles.text}>Turma {subject.codigo}</Text>
 					<Text style={styles.text}>
-						Turma {subject.turma.codigo}
-					</Text>
-					<Text style={styles.text}>
-						Código: {subject.turma.disciplina.codigo}
+						Código: {subject.disciplina.codigo}
 					</Text>
 					{showStatus && (
-						<Text style={styles.text}>
-							Status: {subject.status}
-						</Text>
+						<Text style={styles.text}>Status: {showStatus}</Text>
 					)}
 				</View>
 			</View>
-			<Icon
-				name="times"
-				size={22}
-				style={styles.icon}
-				color={COLORS.white}
-				onPress={() => remover(subject)}
-			/>
+			{!showStatus && (
+				<Icon
+					name="times"
+					size={22}
+					style={styles.icon}
+					color={COLORS.white}
+					onPress={() => remover(subject)}
+				/>
+			)}
 		</View>
 	);
 };

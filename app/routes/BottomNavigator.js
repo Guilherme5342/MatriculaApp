@@ -1,7 +1,7 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import React from "react";
-import BottomBar from "../components/BottomBar";
-import ScreenHeader from "../components/ScreenHeader";
+import BottomBar from "../components/navigation/BottomBar";
+import ScreenHeader from "../components/navigation/ScreenHeader";
 import Home from "../pages/Home";
 import Profile from "../pages/Profile";
 import Search from "../pages/Search";
@@ -42,7 +42,7 @@ export default BottomNavigator = ({ navigation }) => {
 				options={{
 					title: "Matricula",
 					icon: "search-plus",
-					header: () => <ScreenHeader title="Matricula" />,
+					header: () => {},
 				}}
 				component={EnrollmentStack}
 			/>

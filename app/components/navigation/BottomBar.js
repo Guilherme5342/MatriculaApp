@@ -1,7 +1,7 @@
 import React from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome5";
-import { COLORS, FONTS } from "../services/Constants";
+import { COLORS, FONTS } from "../../services/Constants";
 
 export default BottomBar = ({ state, descriptors, navigation }) => {
 	return (

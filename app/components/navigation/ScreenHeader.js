@@ -3,7 +3,7 @@ import React from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Icon from "react-native-vector-icons/FontAwesome5";
-import { COLORS, FONTS } from "../services/Constants";
+import { COLORS, FONTS } from "../../services/Constants";
 
 export default ScreenHeader = ({ title, style }) => {
 	const navigation = useNavigation();

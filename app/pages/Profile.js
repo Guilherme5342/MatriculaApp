@@ -1,10 +1,10 @@
 import React, { useContext, useState } from "react";
-import { Image, StyleSheet, Text, View } from "react-native";
+import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 import { AuthContext } from "../services/AuthState";
 import { COLORS } from "../services/Constants";
 
 export default Profile = () => {
-	const { user } = useContext(AuthContext);
+	const { user, logout } = useContext(AuthContext);
 
 	return (
 		<View style={styles.container}>
@@ -29,6 +29,10 @@ export default Profile = () => {
 				Período de Ingresso: {user.periodoIngresso.numero}/
 				{user.periodoIngresso.ano}
 			</Text>
+
+			<Pressable onPress={() => logout()} style={styles.sair}>
+				<Text style={styles.sairText}>Sair</Text>
+			</Pressable>
 		</View>
 	);
 };
@@ -51,6 +55,20 @@ const styles = StyleSheet.create({
 		paddingLeft: 25,
 		marginBottom: 10,
 		fontSize: 18,
+		fontWeight: "bold",
+	},
+	sair: {
+		alignSelf: "center",
+		backgroundColor: COLORS.green,
+		width: 140,
+		height: 40,
+		justifyContent: "center",
+		alignItems: "center",
+		borderRadius: 12,
+	},
+	sairText: {
+		color: COLORS.white,
+		fontSize: 20,
 		fontWeight: "bold",
 	},
 });

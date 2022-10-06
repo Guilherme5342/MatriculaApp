@@ -1,5 +1,5 @@
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
-import SubjectsBar from "../components/SubjectsBar";
+import SubjectsBar from "../components/navigation/SubjectsBar";
 import Home from "../pages/Home";
 import Processing from "../pages/Processing";
 

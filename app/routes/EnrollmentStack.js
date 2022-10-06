@@ -1,8 +1,8 @@
 import { createStackNavigator } from "@react-navigation/stack";
 import React from "react";
-import ScreenHeader from "../components/ScreenHeader";
+import ScreenHeader from "../components/navigation/ScreenHeader";
 import Enrollment from "../pages/Enrollment";
-// import Subject from "../pages/Subject";
+import Subject from "../pages/Subject";
 
 const Stack = createStackNavigator();
 
@@ -15,7 +15,7 @@ export default EnrollmentStack = () => {
 					options={{
 						title: "Matricula",
 						icon: "search-plus",
-						header: () => {},
+						header: () => <ScreenHeader title="Matricula" />,
 					}}
 					component={Enrollment}
 				/>
